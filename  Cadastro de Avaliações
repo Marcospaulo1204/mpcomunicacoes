@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP Comunicação - Cadastro de Avaliações</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #1565c0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(21, 101, 192, 0.15);
+            overflow: hidden;
+        }
+
+        header {
+            background: #1565c0;
+            color: white;
+            padding: 24px 32px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        header p {
+            margin-top: 6px;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .form-container {
+            padding: 32px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #0d47a1;
+            font-size: 0.9rem;
+        }
+
+        input, select, textarea {
+            padding: 12px 14px;
+            border: 2px solid #90caf9;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #0d47a1;
+            background-color: #e3f2fd;
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #1565c0;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.2);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #64b5f6;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .estrelas {
+            display: flex;
+            gap: 8px;
+            margin-top: 6px;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .estrela {
+            color: #bbdefb;
+            transition: color 0.2s;
+        }
+
+        .estrela.ativa {
+            color: #1565c0;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #1565c0;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #1565c0;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0d47a1;
+        }
+
+        .btn-secondary {
+            background: #e3f2fd;
+            color: #1565c0;
+            border: 2px solid #90caf9;
+        }
+
+        .btn-secondary:hover {
+            background: #bbdefb;
+        }
+
+        .note {
+            margin-top: 25px;
+            padding: 14px 18px;
+            background: #e3f2fd;
+            border-left: 4px solid #1565c0;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #0d47a1;
+        }
+
+        @media (max-width: 500px) {
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MP Comunicação</h1>
+            <p>Avaliar Atendimento / Intérprete</p>
+        </header>
+
+        <div class="form-container">
+            <form id="formAvaliacao">
+                <div class="form-group">
+                    <label for="agendamento_id">Agendamento *</label>
+                    <select id="agendamento_id" name="agendamento_id" required>
+                        <option value="">Selecione o agendamento...</option>
+                        <option value="1">#001 - Maria Silva + Ana Paula (25/10/2026)</option>
+                        <option value="2">#002 - João Pedro + Carlos Eduardo (26/10/2026)</option>
+                        <option value="3">#003 - Ana Oliveira + Fernanda (27/10/2026)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="cliente_id">Cliente *</label>
+                    <select id="cliente_id" name="cliente_id" required>
+                        <option value="">Selecione o cliente...</option>
+                        <option value="1">Maria Silva</option>
+                        <option value="2">João Pedro Santos</option>
+                        <option value="3">Ana Oliveira</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="interprete_id">Intérprete *</label>
+                    <select id="interprete_id" name="interprete_id" required>
+                        <option value="">Selecione o intérprete...</option>
+                        <option value="1">Ana Paula Souza</option>
+                        <option value="2">Carlos Eduardo Lima</option>
+                        <option value="3">Fernanda Oliveira</option>
+                        <option value="4">Ricardo Mendes</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Nota (1 a 5) *</label>
+                    <div class="estrelas" id="estrelas">
+                        <span class="estrela" data-valor="1">★</span>
+                        <span class="estrela" data-valor="2">★</span>
+                        <span class="estrela" data-valor="3">★</span>
+                        <span class="estrela" data-valor="4">★</span>
+                        <span class="estrela" data-valor="5">★</span>
+                    </div>
+                    <input type="hidden" id="nota" name="nota" value="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="comentario">Comentário</label>
+                    <textarea id="comentario" name="comentario" placeholder="Conte como foi o atendimento..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="resposta_interprete">Resposta do Intérprete</label>
+                    <textarea id="resposta_interprete" name="resposta_interprete" placeholder="Resposta do intérprete (opcional)..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Visibilidade</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="visivel" name="visivel" checked>
+                        <label for="visivel" style="margin:0; font-weight:normal;">Avaliação visível publicamente</label>
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" class="btn-primary">Enviar Avaliação</button>
+                    <button type="reset" class="btn-secondary">Limpar</button>
+                </div>
+
+                <div class="note">
+                    Formulário correspondente à tabela <strong>avaliacoes</strong> do banco mp_comunicacao.<br>
+                    A nota deve ser entre 1 e 5 (conforme constraint do banco).
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const estrelas = document.querySelectorAll('.estrela');
+        const inputNota = document.getElementById('nota');
+
+        estrelas.forEach(estrela => {
+            estrela.addEventListener('click', function() {
+                const valor = this.getAttribute('data-valor');
+                inputNota.value = valor;
+
+                estrelas.forEach(e => {
+                    if (e.getAttribute('data-valor') <= valor) {
+                        e.classList.add('ativa');
+                    } else {
+                        e.classList.remove('ativa');
+                    }
+                });
+            });
+        });
+
+        document.getElementById('formAvaliacao').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nota = inputNota.value;
+
+            if (nota < 1 || nota > 5) {
+                alert('Por favor, selecione uma nota de 1 a 5 estrelas.');
+                return;
+            }
+
+            alert('Avaliação enviada com sucesso!\n\nNota: ' + nota + ' estrela(s)\n\n(Esta é uma tela de teste visual.\nOs dados seriam salvos na tabela avaliacoes.)');
+        });
+    </script>
+</body>
+</html>
+

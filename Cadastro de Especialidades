@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP Comunicação - Cadastro de Especialidades</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #1565c0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(21, 101, 192, 0.15);
+            overflow: hidden;
+        }
+
+        header {
+            background: #1565c0;
+            color: white;
+            padding: 24px 32px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.7rem;
+            font-weight: 600;
+        }
+
+        header p {
+            margin-top: 6px;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .form-container {
+            padding: 32px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #0d47a1;
+            font-size: 0.9rem;
+        }
+
+        input, select, textarea {
+            padding: 12px 14px;
+            border: 2px solid #90caf9;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #0d47a1;
+            background-color: #e3f2fd;
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #1565c0;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.2);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #64b5f6;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #1565c0;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #1565c0;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0d47a1;
+        }
+
+        .btn-secondary {
+            background: #e3f2fd;
+            color: #1565c0;
+            border: 2px solid #90caf9;
+        }
+
+        .btn-secondary:hover {
+            background: #bbdefb;
+        }
+
+        .note {
+            margin-top: 25px;
+            padding: 14px 18px;
+            background: #e3f2fd;
+            border-left: 4px solid #1565c0;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #0d47a1;
+        }
+
+        .examples {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #bbdefb;
+        }
+
+        .examples h3 {
+            color: #0d47a1;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .examples ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .examples li {
+            background: #e3f2fd;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #1565c0;
+        }
+
+        @media (max-width: 500px) {
+            .buttons {
+                flex-direction: column;
+            }
+            .examples ul {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MP Comunicação</h1>
+            <p>Cadastro de Especialidades - Áreas de Atuação</p>
+        </header>
+
+        <div class="form-container">
+            <form id="formEspecialidade">
+                <div class="form-group">
+                    <label for="nome">Nome da Especialidade *</label>
+                    <input type="text" id="nome" name="nome" placeholder="Ex: Saúde, Jurídico, Educação..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="descricao">Descrição</label>
+                    <textarea id="descricao" name="descricao" placeholder="Descreva o tipo de atendimento desta especialidade..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="icone">Ícone (nome ou emoji)</label>
+                    <input type="text" id="icone" name="icone" placeholder="Ex: hospital, balance-scale, graduation-cap ou 🏥">
+                </div>
+
+                <div class="form-group">
+                    <label>Status</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="ativo" name="ativo" checked>
+                        <label for="ativo" style="margin:0; font-weight:normal;">Ativo</label>
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" class="btn-primary">Cadastrar Especialidade</button>
+                    <button type="reset" class="btn-secondary">Limpar Campos</button>
+                </div>
+
+                <div class="note">
+                    Formulário correspondente à tabela <strong>especialidades</strong> do banco mp_comunicacao.<br>
+                    Este é um protótipo visual para teste no navegador.
+                </div>
+
+                <div class="examples">
+                    <h3>Exemplos de Especialidades já cadastradas:</h3>
+                    <ul>
+                        <li>Saúde</li>
+                        <li>Jurídico</li>
+                        <li>Educação</li>
+                        <li>Psicologia / Psiquiatria</li>
+                        <li>Bancário / Financeiro</li>
+                        <li>Trabalho</li>
+                        <li>CNH / Detran</li>
+                        <li>Compras / Varejo</li>
+                        <li>Eventos</li>
+                        <li>Geral</li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('formEspecialidade').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Especialidade cadastrada com sucesso!\n\n(Esta é uma tela de teste visual.\nOs dados seriam salvos na tabela especialidades.)');
+        });
+    </script>
+</body>
+</html>

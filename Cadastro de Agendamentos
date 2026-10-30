@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP Comunicação - Cadastro de Agendamentos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            min-height: 100vh;
+            padding: 30px 15px;
+            color: #1565c0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(21, 101, 192, 0.15);
+            overflow: hidden;
+        }
+
+        header {
+            background: #1565c0;
+            color: white;
+            padding: 22px 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        header p {
+            margin-top: 5px;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .form-container {
+            padding: 30px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            color: #0d47a1;
+            margin: 22px 0 14px 0;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #90caf9;
+            font-weight: 600;
+        }
+
+        .section-title:first-child {
+            margin-top: 0;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #0d47a1;
+            font-size: 0.9rem;
+        }
+
+        input, select, textarea {
+            padding: 11px 13px;
+            border: 2px solid #90caf9;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: #0d47a1;
+            background-color: #e3f2fd;
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #1565c0;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.2);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #64b5f6;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
+            grid-column: 1 / -1;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #1565c0;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0d47a1;
+        }
+
+        .btn-secondary {
+            background: #e3f2fd;
+            color: #1565c0;
+            border: 2px solid #90caf9;
+        }
+
+        .btn-secondary:hover {
+            background: #bbdefb;
+        }
+
+        .note {
+            margin-top: 22px;
+            padding: 14px 16px;
+            background: #e3f2fd;
+            border-left: 4px solid #1565c0;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #0d47a1;
+        }
+
+        @media (max-width: 650px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MP Comunicação</h1>
+            <p>Solicitar / Cadastrar Agendamento</p>
+        </header>
+
+        <div class="form-container">
+            <form id="formAgendamento">
+
+                <div class="section-title">Quem irá atender</div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="cliente_id">Cliente *</label>
+                        <select id="cliente_id" name="cliente_id" required>
+                            <option value="">Selecione o cliente...</option>
+                            <option value="1">Maria Silva</option>
+                            <option value="2">João Pedro Santos</option>
+                            <option value="3">Ana Oliveira</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interprete_id">Intérprete *</label>
+                        <select id="interprete_id" name="interprete_id" required>
+                            <option value="">Selecione o intérprete...</option>
+                            <option value="1">Ana Paula Souza</option>
+                            <option value="2">Carlos Eduardo Lima</option>
+                            <option value="3">Fernanda Oliveira</option>
+                            <option value="4">Ricardo Mendes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="especialidade_id">Especialidade</label>
+                        <select id="especialidade_id" name="especialidade_id">
+                            <option value="">Selecione...</option>
+                            <option value="1">Saúde</option>
+                            <option value="2">Jurídico</option>
+                            <option value="3">Educação</option>
+                            <option value="4">Psicologia / Psiquiatria</option>
+                            <option value="5">Bancário / Financeiro</option>
+                            <option value="6">Trabalho</option>
+                            <option value="7">CNH / Detran</option>
+                            <option value="10">Geral</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="section-title">Data e Horário</div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="data_atendimento">Data do Atendimento *</label>
+                        <input type="date" id="data_atendimento" name="data_atendimento" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="duracao_minutos">Duração (minutos) *</label>
+                        <input type="number" id="duracao_minutos" name="duracao_minutos" min="30" step="30" value="60" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hora_inicio">Hora Início *</label>
+                        <input type="time" id="hora_inicio" name="hora_inicio" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hora_fim">Hora Fim *</label>
+                        <input type="time" id="hora_fim" name="hora_fim" required>
+                    </div>
+                </div>
+
+                <div class="section-title">Local do Atendimento</div>
+                <div class="form-grid">
+                    <div class="form-group full">
+                        <label for="endereco_atendimento">Endereço Completo *</label>
+                        <input type="text" id="endereco_atendimento" name="endereco_atendimento" placeholder="Rua, número, bairro, complemento" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cidade_atendimento">Cidade</label>
+                        <input type="text" id="cidade_atendimento" name="cidade_atendimento" placeholder="Ex: São Paulo">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="estado_atendimento">Estado (UF)</label>
+                        <select id="estado_atendimento" name="estado_atendimento">
+                            <option value="">Selecione...</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="PR">Paraná</option>
+                            <option value="BA">Bahia</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="DF">Distrito Federal</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="section-title">Valores</div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="valor_hora">Valor Hora (R$) *</label>
+                        <input type="number" id="valor_hora" name="valor_hora" step="0.01" min="0" placeholder="80.00" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="valor_total">Valor Total (R$) *</label>
+                        <input type="number" id="valor_total" name="valor_total" step="0.01" min="0" placeholder="160.00" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taxa_plataforma">Taxa Plataforma (R$)</label>
+                        <input type="number" id="taxa_plataforma" name="taxa_plataforma" step="0.01" min="0" placeholder="16.00">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="valor_interprete">Valor Intérprete (R$)</label>
+                        <input type="number" id="valor_interprete" name="valor_interprete" step="0.01" min="0" placeholder="144.00">
+                    </div>
+                </div>
+
+                <div class="section-title">Status e Observações</div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select id="status" name="status">
+                            <option value="pendente" selected>Pendente</option>
+                            <option value="aceito">Aceito</option>
+                            <option value="recusado">Recusado</option>
+                            <option value="confirmado">Confirmado</option>
+                            <option value="em_andamento">Em Andamento</option>
+                            <option value="concluido">Concluído</option>
+                            <option value="cancelado">Cancelado</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="observacoes_cliente">Observações do Cliente</label>
+                        <textarea id="observacoes_cliente" name="observacoes_cliente" placeholder="Informações importantes sobre o atendimento..."></textarea>
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="observacoes_interprete">Observações do Intérprete</label>
+                        <textarea id="observacoes_interprete" name="observacoes_interprete" placeholder="Observações internas do intérprete..."></textarea>
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" class="btn-primary">Salvar Agendamento</button>
+                    <button type="reset" class="btn-secondary">Limpar Campos</button>
+                </div>
+
+                <div class="note">
+                    Formulário correspondente à tabela <strong>agendamentos</strong> do banco mp_comunicacao.<br>
+                    Este é um protótipo visual para teste no navegador.
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('formAgendamento').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const inicio = document.getElementById('hora_inicio').value;
+            const fim = document.getElementById('hora_fim').value;
+
+            if (inicio && fim && inicio >= fim) {
+                alert('A hora de fim deve ser maior que a hora de início!');
+                return;
+            }
+
+            alert('Agendamento salvo com sucesso!\n\n(Esta é uma tela de teste visual.\nOs dados seriam salvos na tabela agendamentos.)');
+        });
+    </script>
+</body>
+</html>

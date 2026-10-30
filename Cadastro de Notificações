@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP Comunicação - Cadastro de Notificações</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #1565c0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(21, 101, 192, 0.15);
+            overflow: hidden;
+        }
+
+        header {
+            background: #1565c0;
+            color: white;
+            padding: 24px 32px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        header p {
+            margin-top: 6px;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .form-container {
+            padding: 32px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #0d47a1;
+            font-size: 0.9rem;
+        }
+
+        input, select, textarea {
+            padding: 12px 14px;
+            border: 2px solid #90caf9;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #0d47a1;
+            background-color: #e3f2fd;
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #1565c0;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.2);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #64b5f6;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #1565c0;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #1565c0;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0d47a1;
+        }
+
+        .btn-secondary {
+            background: #e3f2fd;
+            color: #1565c0;
+            border: 2px solid #90caf9;
+        }
+
+        .btn-secondary:hover {
+            background: #bbdefb;
+        }
+
+        .note {
+            margin-top: 25px;
+            padding: 14px 18px;
+            background: #e3f2fd;
+            border-left: 4px solid #1565c0;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #0d47a1;
+        }
+
+        @media (max-width: 500px) {
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MP Comunicação</h1>
+            <p>Cadastro de Notificações</p>
+        </header>
+
+        <div class="form-container">
+            <form id="formNotificacao">
+                <div class="form-group">
+                    <label for="usuario_id">Usuário Destinatário *</label>
+                    <select id="usuario_id" name="usuario_id" required>
+                        <option value="">Selecione o usuário...</option>
+                        <option value="1">Maria Silva (Cliente)</option>
+                        <option value="2">João Pedro Santos (Cliente)</option>
+                        <option value="3">Ana Paula Souza (Intérprete)</option>
+                        <option value="4">Carlos Eduardo Lima (Intérprete)</option>
+                        <option value="5">Fernanda Oliveira (Intérprete)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="titulo">Título *</label>
+                    <input type="text" id="titulo" name="titulo" placeholder="Ex: Nova solicitação de agendamento" maxlength="150" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensagem">Mensagem *</label>
+                    <textarea id="mensagem" name="mensagem" placeholder="Digite o conteúdo da notificação..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="tipo">Tipo de Notificação *</label>
+                    <select id="tipo" name="tipo" required>
+                        <option value="">Selecione o tipo...</option>
+                        <option value="solicitacao_agendamento">Solicitação de Agendamento</option>
+                        <option value="agendamento_aceito">Agendamento Aceito</option>
+                        <option value="agendamento_recusado">Agendamento Recusado</option>
+                        <option value="agendamento_confirmado">Agendamento Confirmado</option>
+                        <option value="agendamento_cancelado">Agendamento Cancelado</option>
+                        <option value="pagamento">Pagamento</option>
+                        <option value="avaliacao">Avaliação</option>
+                        <option value="sistema">Sistema</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_relacionado">ID Relacionado (opcional)</label>
+                    <input type="text" id="id_relacionado" name="id_relacionado" placeholder="ID do agendamento, pagamento, etc.">
+                </div>
+
+                <div class="form-group">
+                    <label for="tipo_relacionado">Tipo Relacionado</label>
+                    <select id="tipo_relacionado" name="tipo_relacionado">
+                        <option value="">Nenhum</option>
+                        <option value="agendamento">Agendamento</option>
+                        <option value="pagamento">Pagamento</option>
+                        <option value="avaliacao">Avaliação</option>
+                        <option value="usuario">Usuário</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Status de Leitura</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="lida" name="lida">
+                        <label for="lida" style="margin:0; font-weight:normal;">Marcar como lida</label>
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" class="btn-primary">Enviar Notificação</button>
+                    <button type="reset" class="btn-secondary">Limpar</button>
+                </div>
+
+                <div class="note">
+                    Formulário correspondente à tabela <strong>notificacoes</strong> do banco mp_comunicacao.<br>
+                    Este é um protótipo visual para teste no navegador.
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('formNotificacao').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const titulo = document.getElementById('titulo').value;
+            const tipo = document.getElementById('tipo').options[document.getElementById('tipo').selectedIndex].text;
+            
+            alert('Notificação enviada com sucesso!\n\nTítulo: ' + titulo + '\nTipo: ' + tipo + '\n\n(Esta é uma tela de teste visual.\nOs dados seriam salvos na tabela notificacoes.)');
+        });
+    </script>
+</body>
+</html>

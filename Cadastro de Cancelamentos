@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP Comunicação - Cadastro de Cancelamentos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #1565c0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(21, 101, 192, 0.15);
+            overflow: hidden;
+        }
+
+        header {
+            background: #1565c0;
+            color: white;
+            padding: 24px 32px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        header p {
+            margin-top: 6px;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .form-container {
+            padding: 32px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #0d47a1;
+            font-size: 0.9rem;
+        }
+
+        input, select, textarea {
+            padding: 12px 14px;
+            border: 2px solid #90caf9;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #0d47a1;
+            background-color: #e3f2fd;
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #1565c0;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.2);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #64b5f6;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #1565c0;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0d47a1;
+        }
+
+        .btn-secondary {
+            background: #e3f2fd;
+            color: #1565c0;
+            border: 2px solid #90caf9;
+        }
+
+        .btn-secondary:hover {
+            background: #bbdefb;
+        }
+
+        .btn-danger {
+            background: #c62828;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #b71c1c;
+        }
+
+        .note {
+            margin-top: 25px;
+            padding: 14px 18px;
+            background: #e3f2fd;
+            border-left: 4px solid #1565c0;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #0d47a1;
+        }
+
+        .warning-box {
+            margin-top: 20px;
+            padding: 14px 16px;
+            background: #fff3e0;
+            border-left: 4px solid #ef6c00;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #e65100;
+        }
+
+        @media (max-width: 500px) {
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MP Comunicação</h1>
+            <p>Cancelamento de Agendamento</p>
+        </header>
+
+        <div class="form-container">
+            <form id="formCancelamento">
+                <div class="form-group">
+                    <label for="agendamento_id">Agendamento a Cancelar *</label>
+                    <select id="agendamento_id" name="agendamento_id" required>
+                        <option value="">Selecione o agendamento...</option>
+                        <option value="1">#001 - Maria Silva + Ana Paula (25/10/2026) - Pendente</option>
+                        <option value="2">#002 - João Pedro + Carlos Eduardo (26/10/2026) - Confirmado</option>
+                        <option value="3">#003 - Ana Oliveira + Fernanda (27/10/2026) - Aceito</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="cancelado_por">Cancelado por *</label>
+                    <select id="cancelado_por" name="cancelado_por" required>
+                        <option value="">Selecione quem está cancelando...</option>
+                        <option value="1">Maria Silva (Cliente)</option>
+                        <option value="2">João Pedro Santos (Cliente)</option>
+                        <option value="3">Ana Paula Souza (Intérprete)</option>
+                        <option value="4">Carlos Eduardo Lima (Intérprete)</option>
+                        <option value="5">Administrador do Sistema</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="motivo">Motivo do Cancelamento *</label>
+                    <textarea id="motivo" name="motivo" placeholder="Descreva o motivo do cancelamento..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="percentual_reembolso">Percentual de Reembolso (%)</label>
+                    <input type="number" id="percentual_reembolso" name="percentual_reembolso" min="0" max="100" step="0.01" placeholder="Ex: 100.00">
+                </div>
+
+                <div class="form-group">
+                    <label for="valor_reembolso">Valor do Reembolso (R$)</label>
+                    <input type="number" id="valor_reembolso" name="valor_reembolso" min="0" step="0.01" placeholder="Ex: 160.00">
+                </div>
+
+                <div class="form-group">
+                    <label for="status_reembolso">Status do Reembolso</label>
+                    <select id="status_reembolso" name="status_reembolso">
+                        <option value="pendente" selected>Pendente</option>
+                        <option value="processando">Processando</option>
+                        <option value="concluido">Concluído</option>
+                        <option value="negado">Negado</option>
+                    </select>
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" class="btn-danger">Confirmar Cancelamento</button>
+                    <button type="reset" class="btn-secondary">Limpar</button>
+                </div>
+
+                <div class="note">
+                    Formulário correspondente à tabela <strong>cancelamentos</strong> do banco mp_comunicacao.<br>
+                    Este é um protótipo visual para teste no navegador.
+                </div>
+
+                <div class="warning-box">
+                    <strong>Atenção:</strong> O cancelamento de um agendamento pode gerar reembolso parcial ou total, de acordo com a política da plataforma.
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('formCancelamento').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const confirmacao = confirm('Tem certeza que deseja cancelar este agendamento?\n\nEsta ação não poderá ser desfeita facilmente.');
+            
+            if (confirmacao) {
+                alert('Cancelamento registrado com sucesso!\n\n(Esta é uma tela de teste visual.\nOs dados seriam salvos na tabela cancelamentos.)');
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP Comunicação - Cadastro de Pagamentos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #1565c0;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(21, 101, 192, 0.15);
+            overflow: hidden;
+        }
+
+        header {
+            background: #1565c0;
+            color: white;
+            padding: 24px 32px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        header p {
+            margin-top: 6px;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .form-container {
+            padding: 32px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #0d47a1;
+            font-size: 0.9rem;
+        }
+
+        input, select {
+            padding: 12px 14px;
+            border: 2px solid #90caf9;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #0d47a1;
+            background-color: #e3f2fd;
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #1565c0;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.2);
+        }
+
+        input::placeholder {
+            color: #64b5f6;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
+            grid-column: 1 / -1;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #1565c0;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0d47a1;
+        }
+
+        .btn-secondary {
+            background: #e3f2fd;
+            color: #1565c0;
+            border: 2px solid #90caf9;
+        }
+
+        .btn-secondary:hover {
+            background: #bbdefb;
+        }
+
+        .note {
+            margin-top: 25px;
+            padding: 14px 18px;
+            background: #e3f2fd;
+            border-left: 4px solid #1565c0;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #0d47a1;
+        }
+
+        .info-box {
+            margin-top: 20px;
+            padding: 14px 16px;
+            background: #e8f5e9;
+            border-left: 4px solid #2e7d32;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #1b5e20;
+        }
+
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MP Comunicação</h1>
+            <p>Cadastro / Registro de Pagamentos</p>
+        </header>
+
+        <div class="form-container">
+            <form id="formPagamento">
+                <div class="form-grid">
+                    <div class="form-group full">
+                        <label for="agendamento_id">Agendamento *</label>
+                        <select id="agendamento_id" name="agendamento_id" required>
+                            <option value="">Selecione o agendamento...</option>
+                            <option value="1">#001 - Maria Silva + Ana Paula (25/10/2026)</option>
+                            <option value="2">#002 - João Pedro + Carlos Eduardo (26/10/2026)</option>
+                            <option value="3">#003 - Ana Oliveira + Fernanda (27/10/2026)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="valor_total">Valor Total (R$) *</label>
+                        <input type="number" id="valor_total" name="valor_total" step="0.01" min="0" placeholder="160.00" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taxa_plataforma">Taxa da Plataforma (R$) *</label>
+                        <input type="number" id="taxa_plataforma" name="taxa_plataforma" step="0.01" min="0" placeholder="16.00" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="valor_interprete">Valor do Intérprete (R$) *</label>
+                        <input type="number" id="valor_interprete" name="valor_interprete" step="0.01" min="0" placeholder="144.00" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="forma_pagamento">Forma de Pagamento</label>
+                        <select id="forma_pagamento" name="forma_pagamento">
+                            <option value="">Selecione...</option>
+                            <option value="pix">Pix</option>
+                            <option value="cartao_credito">Cartão de Crédito</option>
+                            <option value="cartao_debito">Cartão de Débito</option>
+                            <option value="boleto">Boleto</option>
+                            <option value="transferencia">Transferência</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gateway">Gateway de Pagamento</label>
+                        <select id="gateway" name="gateway">
+                            <option value="">Selecione...</option>
+                            <option value="mercadopago">Mercado Pago</option>
+                            <option value="stripe">Stripe</option>
+                            <option value="pagseguro">PagSeguro</option>
+                            <option value="paypal">PayPal</option>
+                            <option value="asaas">Asaas</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_transacao_gateway">ID da Transação (Gateway)</label>
+                        <input type="text" id="id_transacao_gateway" name="id_transacao_gateway" placeholder="Ex: MP-123456789">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status">Status do Pagamento</label>
+                        <select id="status" name="status">
+                            <option value="pendente" selected>Pendente</option>
+                            <option value="pago">Pago</option>
+                            <option value="falhou">Falhou</option>
+                            <option value="reembolsado">Reembolsado</option>
+                            <option value="parcialmente_reembolsado">Parcialmente Reembolsado</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pago_em">Data/Hora do Pagamento</label>
+                        <input type="datetime-local" id="pago_em" name="pago_em">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="valor_reembolso">Valor do Reembolso (R$)</label>
+                        <input type="number" id="valor_reembolso" name="valor_reembolso" step="0.01" min="0" placeholder="0.00">
+                    </div>
+
+                    <div class="buttons">
+                        <button type="submit" class="btn-primary">Registrar Pagamento</button>
+                        <button type="reset" class="btn-secondary">Limpar Campos</button>
+                    </div>
+                </div>
+
+                <div class="note">
+                    Formulário correspondente à tabela <strong>pagamentos</strong> do banco mp_comunicacao.<br>
+                    Este é um protótipo visual para teste no navegador.
+                </div>
+
+                <div class="info-box">
+                    <strong>Split de Pagamento:</strong> O valor total é dividido entre a taxa da plataforma e o valor líquido do intérprete.
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('formPagamento').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Pagamento registrado com sucesso!\n\n(Esta é uma tela de teste visual.\nOs dados seriam salvos na tabela pagamentos.)');
+        });
+    </script>
+</body>
+</html>

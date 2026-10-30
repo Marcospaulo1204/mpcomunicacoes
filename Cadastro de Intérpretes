@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP Comunicação - Cadastro de Intérpretes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            min-height: 100vh;
+            padding: 30px 15px;
+            color: #1565c0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(21, 101, 192, 0.15);
+            overflow: hidden;
+        }
+
+        header {
+            background: #1565c0;
+            color: white;
+            padding: 22px 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.7rem;
+            font-weight: 600;
+        }
+
+        header p {
+            margin-top: 5px;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .form-container {
+            padding: 30px;
+        }
+
+        .section-title {
+            font-size: 1.15rem;
+            color: #0d47a1;
+            margin: 25px 0 15px 0;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #90caf9;
+            font-weight: 600;
+        }
+
+        .section-title:first-child {
+            margin-top: 0;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #0d47a1;
+            font-size: 0.9rem;
+        }
+
+        input, select, textarea {
+            padding: 11px 13px;
+            border: 2px solid #90caf9;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: #0d47a1;
+            background-color: #e3f2fd;
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #1565c0;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.2);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #64b5f6;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #1565c0;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+            grid-column: 1 / -1;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #1565c0;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0d47a1;
+        }
+
+        .btn-secondary {
+            background: #e3f2fd;
+            color: #1565c0;
+            border: 2px solid #90caf9;
+        }
+
+        .btn-secondary:hover {
+            background: #bbdefb;
+        }
+
+        .note {
+            margin-top: 20px;
+            padding: 12px 16px;
+            background: #e3f2fd;
+            border-left: 4px solid #1565c0;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #0d47a1;
+        }
+
+        @media (max-width: 650px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MP Comunicação</h1>
+            <p>Cadastro de Intérprete de Libras - Perfil Profissional</p>
+        </header>
+
+        <div class="form-container">
+            <form id="formInterprete">
+
+                <!-- Dados Profissionais -->
+                <div class="section-title">Dados Profissionais</div>
+                <div class="form-grid">
+                    <div class="form-group full">
+                        <label for="biografia">Biografia</label>
+                        <textarea id="biografia" name="biografia" placeholder="Conte um pouco sobre você, sua experiência e motivação..."></textarea>
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="formacao">Formação</label>
+                        <textarea id="formacao" name="formacao" placeholder="Cursos, faculdade, certificações em Libras..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="anos_experiencia">Anos de Experiência</label>
+                        <input type="number" id="anos_experiencia" name="anos_experiencia" min="0" max="50" value="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registro_profissional">Registro Profissional</label>
+                        <input type="text" id="registro_profissional" name="registro_profissional" placeholder="Ex: Registro no órgão competente">
+                    </div>
+                </div>
+
+                <!-- Valores -->
+                <div class="section-title">Valores de Atendimento</div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="valor_hora_base">Valor Hora Base (R$) *</label>
+                        <input type="number" id="valor_hora_base" name="valor_hora_base" step="0.01" min="0" placeholder="Ex: 80.00" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="valor_minimo_atendimento">Valor Mínimo do Atendimento (R$)</label>
+                        <input type="number" id="valor_minimo_atendimento" name="valor_minimo_atendimento" step="0.01" min="0" placeholder="Ex: 120.00">
+                    </div>
+                </div>
+
+                <!-- Localização -->
+                <div class="section-title">Localização e Área de Atendimento</div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="cidade">Cidade *</label>
+                        <input type="text" id="cidade" name="cidade" placeholder="Ex: São Paulo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="estado">Estado (UF) *</label>
+                        <select id="estado" name="estado" required>
+                            <option value="">Selecione...</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="endereco">Endereço</label>
+                        <input type="text" id="endereco" name="endereco" placeholder="Rua, número, bairro">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="latitude">Latitude</label>
+                        <input type="number" id="latitude" name="latitude" step="0.00000001" placeholder="-23.550520">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="longitude">Longitude</label>
+                        <input type="number" id="longitude" name="longitude" step="0.00000001" placeholder="-46.633308">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="raio_atendimento_km">Raio de Atendimento (km)</label>
+                        <input type="number" id="raio_atendimento_km" name="raio_atendimento_km" min="1" max="200" value="30">
+                    </div>
+                </div>
+
+                <!-- Status e Disponibilidade -->
+                <div class="section-title">Status e Disponibilidade</div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="status_verificacao">Status de Verificação</label>
+                        <select id="status_verificacao" name="status_verificacao">
+                            <option value="pendente" selected>Pendente</option>
+                            <option value="em_analise">Em Análise</option>
+                            <option value="aprovado">Aprovado</option>
+                            <option value="rejeitado">Rejeitado</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Disponível no momento</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="disponivel_no_momento" name="disponivel_no_momento">
+                            <label for="disponivel_no_momento" style="margin:0; font-weight:normal;">Sim, estou disponível</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Documentos -->
+                <div class="section-title">Documentos (URLs)</div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="documento_frente_url">Documento Frente (URL)</label>
+                        <input type="url" id="documento_frente_url" name="documento_frente_url" placeholder="https://...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="documento_verso_url">Documento Verso (URL)</label>
+                        <input type="url" id="documento_verso_url" name="documento_verso_url" placeholder="https://...">
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="certificados_urls">Certificados (URLs separadas por vírgula)</label>
+                        <input type="text" id="certificados_urls" name="certificados_urls" placeholder="https://cert1.pdf, https://cert2.pdf">
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" class="btn-primary">Cadastrar Intérprete</button>
+                    <button type="reset" class="btn-secondary">Limpar Campos</button>
+                </div>
+
+                <div class="note">
+                    Este formulário é uma tela de teste visual correspondente à tabela <strong>perfis_interpretes</strong>. 
+                    A integração real com o banco de dados MySQL será feita no backend do aplicativo.
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('formInterprete').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Cadastro de intérprete enviado com sucesso!\n\n(Esta é uma tela de teste visual.\nOs dados seriam salvos na tabela perfis_interpretes.)');
+        });
+    </script>
+</body>
+</html>
