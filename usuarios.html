@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP Comunicação - Cadastro de Usuários</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #1565c0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(21, 101, 192, 0.15);
+            overflow: hidden;
+        }
+
+        header {
+            background: #1565c0;
+            color: white;
+            padding: 24px 32px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        header p {
+            margin-top: 6px;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .form-container {
+            padding: 32px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #0d47a1;
+            font-size: 0.9rem;
+        }
+
+        input, select {
+            padding: 12px 14px;
+            border: 2px solid #90caf9;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #0d47a1;
+            background-color: #e3f2fd;
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #1565c0;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.2);
+        }
+
+        input::placeholder {
+            color: #64b5f6;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
+            grid-column: 1 / -1;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #1565c0;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0d47a1;
+        }
+
+        .btn-secondary {
+            background: #e3f2fd;
+            color: #1565c0;
+            border: 2px solid #90caf9;
+        }
+
+        .btn-secondary:hover {
+            background: #bbdefb;
+        }
+
+        .note {
+            margin-top: 25px;
+            padding: 14px 18px;
+            background: #e3f2fd;
+            border-left: 4px solid #1565c0;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #0d47a1;
+        }
+
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MP Comunicação</h1>
+            <p>Cadastro de Usuários - Tabela usuarios</p>
+        </header>
+
+        <div class="form-container">
+            <form id="formUsuario">
+                <div class="form-grid">
+                    <div class="form-group full">
+                        <label for="nome_completo">Nome Completo *</label>
+                        <input type="text" id="nome_completo" name="nome_completo" placeholder="Digite o nome completo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail *</label>
+                        <input type="email" id="email" name="email" placeholder="exemplo@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senha">Senha *</label>
+                        <input type="password" id="senha" name="senha" placeholder="Mínimo 6 caracteres" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipo_usuario">Tipo de Usuário *</label>
+                        <select id="tipo_usuario" name="tipo_usuario" required>
+                            <option value="">Selecione...</option>
+                            <option value="cliente">Cliente</option>
+                            <option value="interprete">Intérprete</option>
+                            <option value="admin">Administrador</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select id="status" name="status">
+                            <option value="pendente_verificacao" selected>Pendente Verificação</option>
+                            <option value="ativo">Ativo</option>
+                            <option value="inativo">Inativo</option>
+                            <option value="suspenso">Suspenso</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="foto_perfil_url">URL da Foto de Perfil</label>
+                        <input type="url" id="foto_perfil_url" name="foto_perfil_url" placeholder="https://...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="idioma_preferido">Idioma Preferido</label>
+                        <select id="idioma_preferido" name="idioma_preferido">
+                            <option value="pt-BR" selected>Português (Brasil)</option>
+                            <option value="en">Inglês</option>
+                        </select>
+                    </div>
+
+                    <div class="buttons">
+                        <button type="submit" class="btn-primary">Cadastrar Usuário</button>
+                        <button type="reset" class="btn-secondary">Limpar Campos</button>
+                    </div>
+                </div>
+
+                <div class="note">
+                    Formulário correspondente à tabela <strong>usuarios</strong> do banco mp_comunicacao.<br>
+                    Este é um protótipo visual para teste no navegador. A integração com MySQL será feita no backend.
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('formUsuario').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Usuário cadastrado com sucesso!\n\n(Esta é uma tela de teste visual.\nOs dados seriam salvos na tabela usuarios.)');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP Comunicação - Histórico de Status dos Agendamentos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #1565c0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(21, 101, 192, 0.15);
+            overflow: hidden;
+        }
+
+        header {
+            background: #1565c0;
+            color: white;
+            padding: 24px 32px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        header p {
+            margin-top: 6px;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .form-container {
+            padding: 32px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #0d47a1;
+            font-size: 0.9rem;
+        }
+
+        input, select, textarea {
+            padding: 12px 14px;
+            border: 2px solid #90caf9;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #0d47a1;
+            background-color: #e3f2fd;
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #1565c0;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.2);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #64b5f6;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #1565c0;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0d47a1;
+        }
+
+        .btn-secondary {
+            background: #e3f2fd;
+            color: #1565c0;
+            border: 2px solid #90caf9;
+        }
+
+        .btn-secondary:hover {
+            background: #bbdefb;
+        }
+
+        .note {
+            margin-top: 25px;
+            padding: 14px 18px;
+            background: #e3f2fd;
+            border-left: 4px solid #1565c0;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #0d47a1;
+        }
+
+        .info-box {
+            margin-top: 20px;
+            padding: 14px 16px;
+            background: #e8f5e9;
+            border-left: 4px solid #2e7d32;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #1b5e20;
+        }
+
+        @media (max-width: 500px) {
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MP Comunicação</h1>
+            <p>Histórico de Status dos Agendamentos</p>
+        </header>
+
+        <div class="form-container">
+            <form id="formHistorico">
+                <div class="form-group">
+                    <label for="agendamento_id">Agendamento *</label>
+                    <select id="agendamento_id" name="agendamento_id" required>
+                        <option value="">Selecione o agendamento...</option>
+                        <option value="1">#001 - Maria Silva + Ana Paula (25/10/2026)</option>
+                        <option value="2">#002 - João Pedro + Carlos Eduardo (26/10/2026)</option>
+                        <option value="3">#003 - Ana Oliveira + Fernanda (27/10/2026)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="status_anterior">Status Anterior</label>
+                    <select id="status_anterior" name="status_anterior">
+                        <option value="">Nenhum / Inicial</option>
+                        <option value="pendente">Pendente</option>
+                        <option value="aceito">Aceito</option>
+                        <option value="recusado">Recusado</option>
+                        <option value="confirmado">Confirmado</option>
+                        <option value="em_andamento">Em Andamento</option>
+                        <option value="concluido">Concluído</option>
+                        <option value="cancelado">Cancelado</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="status_novo">Status Novo *</label>
+                    <select id="status_novo" name="status_novo" required>
+                        <option value="">Selecione o novo status...</option>
+                        <option value="pendente">Pendente</option>
+                        <option value="aceito">Aceito</option>
+                        <option value="recusado">Recusado</option>
+                        <option value="confirmado">Confirmado</option>
+                        <option value="em_andamento">Em Andamento</option>
+                        <option value="concluido">Concluído</option>
+                        <option value="cancelado">Cancelado</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="alterado_por">Alterado por</label>
+                    <select id="alterado_por" name="alterado_por">
+                        <option value="">Selecione quem alterou...</option>
+                        <option value="1">Maria Silva (Cliente)</option>
+                        <option value="2">João Pedro Santos (Cliente)</option>
+                        <option value="3">Ana Paula Souza (Intérprete)</option>
+                        <option value="4">Carlos Eduardo Lima (Intérprete)</option>
+                        <option value="5">Sistema / Administrador</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="observacao">Observação</label>
+                    <textarea id="observacao" name="observacao" placeholder="Motivo ou detalhe da alteração de status..."></textarea>
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" class="btn-primary">Registrar Alteração</button>
+                    <button type="reset" class="btn-secondary">Limpar</button>
+                </div>
+
+                <div class="note">
+                    Formulário correspondente à tabela <strong>historico_status_agendamento</strong>.<br>
+                    Esta tabela registra o histórico de mudanças de status dos agendamentos (auditoria).
+                </div>
+
+                <div class="info-box">
+                    <strong>Uso:</strong> Sempre que o status de um agendamento muda (ex: de Pendente para Aceito), um registro é criado nesta tabela para manter o histórico completo.
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('formHistorico').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const statusAnterior = document.getElementById('status_anterior').options[document.getElementById('status_anterior').selectedIndex].text;
+            const statusNovo = document.getElementById('status_novo').options[document.getElementById('status_novo').selectedIndex].text;
+            
+            alert('Alteração de status registrada com sucesso!\n\nDe: ' + statusAnterior + '\nPara: ' + statusNovo + '\n\n(Esta é uma tela de teste visual.\nOs dados seriam salvos na tabela historico_status_agendamento.)');
+        });
+    </script>
+</body>
+</html>

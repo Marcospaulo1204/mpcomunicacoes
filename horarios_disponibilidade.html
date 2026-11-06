@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP Comunicação - Horários de Disponibilidade</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #1565c0;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(21, 101, 192, 0.15);
+            overflow: hidden;
+        }
+
+        header {
+            background: #1565c0;
+            color: white;
+            padding: 24px 32px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        header p {
+            margin-top: 6px;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .form-container {
+            padding: 32px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #0d47a1;
+            font-size: 0.9rem;
+        }
+
+        input, select {
+            padding: 12px 14px;
+            border: 2px solid #90caf9;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #0d47a1;
+            background-color: #e3f2fd;
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #1565c0;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.2);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #1565c0;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
+            grid-column: 1 / -1;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #1565c0;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0d47a1;
+        }
+
+        .btn-secondary {
+            background: #e3f2fd;
+            color: #1565c0;
+            border: 2px solid #90caf9;
+        }
+
+        .btn-secondary:hover {
+            background: #bbdefb;
+        }
+
+        .note {
+            margin-top: 25px;
+            padding: 14px 18px;
+            background: #e3f2fd;
+            border-left: 4px solid #1565c0;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #0d47a1;
+        }
+
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MP Comunicação</h1>
+            <p>Cadastro de Horários de Disponibilidade</p>
+        </header>
+
+        <div class="form-container">
+            <form id="formHorario">
+                <div class="form-grid">
+                    <div class="form-group full">
+                        <label for="interprete_id">Intérprete *</label>
+                        <select id="interprete_id" name="interprete_id" required>
+                            <option value="">Selecione o intérprete...</option>
+                            <option value="1">Ana Paula Souza</option>
+                            <option value="2">Carlos Eduardo Lima</option>
+                            <option value="3">Fernanda Oliveira</option>
+                            <option value="4">Ricardo Mendes</option>
+                            <option value="5">Juliana Costa</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipo_horario">Tipo de Horário *</label>
+                        <select id="tipo_horario" name="tipo_horario" required>
+                            <option value="recorrente">Recorrente (toda semana)</option>
+                            <option value="especifico">Data Específica</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="grupo_dia_semana">
+                        <label for="dia_semana">Dia da Semana</label>
+                        <select id="dia_semana" name="dia_semana">
+                            <option value="">Selecione...</option>
+                            <option value="0">Domingo</option>
+                            <option value="1">Segunda-feira</option>
+                            <option value="2">Terça-feira</option>
+                            <option value="3">Quarta-feira</option>
+                            <option value="4">Quinta-feira</option>
+                            <option value="5">Sexta-feira</option>
+                            <option value="6">Sábado</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="grupo_data" style="display:none;">
+                        <label for="data_especifica">Data Específica</label>
+                        <input type="date" id="data_especifica" name="data_especifica">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hora_inicio">Hora Início *</label>
+                        <input type="time" id="hora_inicio" name="hora_inicio" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hora_fim">Hora Fim *</label>
+                        <input type="time" id="hora_fim" name="hora_fim" required>
+                    </div>
+
+                    <div class="form-group full">
+                        <label>Opções</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="disponivel" name="disponivel" checked>
+                            <label for="disponivel" style="margin:0; font-weight:normal;">Disponível</label>
+                        </div>
+                    </div>
+
+                    <div class="buttons">
+                        <button type="submit" class="btn-primary">Salvar Horário</button>
+                        <button type="reset" class="btn-secondary">Limpar</button>
+                    </div>
+                </div>
+
+                <div class="note">
+                    Formulário correspondente à tabela <strong>horarios_disponibilidade</strong>.<br>
+                    Você pode cadastrar horários recorrentes (toda semana) ou para uma data específica.
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const tipoHorario = document.getElementById('tipo_horario');
+        const grupoDia = document.getElementById('grupo_dia_semana');
+        const grupoData = document.getElementById('grupo_data');
+
+        tipoHorario.addEventListener('change', function() {
+            if (this.value === 'especifico') {
+                grupoDia.style.display = 'none';
+                grupoData.style.display = 'flex';
+            } else {
+                grupoDia.style.display = 'flex';
+                grupoData.style.display = 'none';
+            }
+        });
+
+        document.getElementById('formHorario').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const inicio = document.getElementById('hora_inicio').value;
+            const fim = document.getElementById('hora_fim').value;
+
+            if (inicio && fim && inicio >= fim) {
+                alert('A hora de fim deve ser maior que a hora de início!');
+                return;
+            }
+
+            alert('Horário de disponibilidade cadastrado com sucesso!\n\n(Esta é uma tela de teste visual.\nOs dados seriam salvos na tabela horarios_disponibilidade.)');
+        });
+    </script>
+</body>
+</html>

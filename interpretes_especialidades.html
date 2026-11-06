@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP Comunicação - Relação Intérpretes x Especialidades</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #1565c0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(21, 101, 192, 0.15);
+            overflow: hidden;
+        }
+
+        header {
+            background: #1565c0;
+            color: white;
+            padding: 24px 32px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        header p {
+            margin-top: 6px;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .form-container {
+            padding: 32px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 22px;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #0d47a1;
+            font-size: 0.9rem;
+        }
+
+        select {
+            padding: 12px 14px;
+            border: 2px solid #90caf9;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #0d47a1;
+            background-color: #e3f2fd;
+            transition: all 0.2s ease;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #1565c0;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.2);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #1565c0;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0d47a1;
+        }
+
+        .btn-secondary {
+            background: #e3f2fd;
+            color: #1565c0;
+            border: 2px solid #90caf9;
+        }
+
+        .btn-secondary:hover {
+            background: #bbdefb;
+        }
+
+        .note {
+            margin-top: 25px;
+            padding: 14px 18px;
+            background: #e3f2fd;
+            border-left: 4px solid #1565c0;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #0d47a1;
+        }
+
+        .info-box {
+            margin-top: 25px;
+            padding: 16px;
+            background: #e8f5e9;
+            border-radius: 8px;
+            border-left: 4px solid #2e7d32;
+            font-size: 0.9rem;
+            color: #1b5e20;
+        }
+
+        @media (max-width: 500px) {
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MP Comunicação</h1>
+            <p>Vincular Intérprete às Especialidades</p>
+        </header>
+
+        <div class="form-container">
+            <form id="formRelacao">
+                <div class="form-group">
+                    <label for="interprete_id">Intérprete *</label>
+                    <select id="interprete_id" name="interprete_id" required>
+                        <option value="">Selecione o intérprete...</option>
+                        <option value="1">Ana Paula Souza</option>
+                        <option value="2">Carlos Eduardo Lima</option>
+                        <option value="3">Fernanda Oliveira</option>
+                        <option value="4">Ricardo Mendes</option>
+                        <option value="5">Juliana Costa</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="especialidade_id">Especialidade *</label>
+                    <select id="especialidade_id" name="especialidade_id" required>
+                        <option value="">Selecione a especialidade...</option>
+                        <option value="1">Saúde</option>
+                        <option value="2">Jurídico</option>
+                        <option value="3">Educação</option>
+                        <option value="4">Psicologia / Psiquiatria</option>
+                        <option value="5">Bancário / Financeiro</option>
+                        <option value="6">Trabalho</option>
+                        <option value="7">CNH / Detran</option>
+                        <option value="8">Compras / Varejo</option>
+                        <option value="9">Eventos</option>
+                        <option value="10">Geral</option>
+                    </select>
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" class="btn-primary">Vincular Especialidade</button>
+                    <button type="reset" class="btn-secondary">Limpar</button>
+                </div>
+
+                <div class="note">
+                    Formulário correspondente à tabela <strong>interpretes_especialidades</strong>.<br>
+                    Esta tabela faz a relação N:N entre intérpretes e especialidades.
+                </div>
+
+                <div class="info-box">
+                    <strong>Como funciona:</strong><br>
+                    Um intérprete pode atender em várias especialidades (ex: Saúde + Jurídico).<br>
+                    Uma especialidade pode ter vários intérpretes vinculados.
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('formRelacao').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const interprete = document.getElementById('interprete_id').options[document.getElementById('interprete_id').selectedIndex].text;
+            const especialidade = document.getElementById('especialidade_id').options[document.getElementById('especialidade_id').selectedIndex].text;
+            alert('Vínculo realizado com sucesso!\n\nIntérprete: ' + interprete + '\nEspecialidade: ' + especialidade + '\n\n(Esta é uma tela de teste visual)');
+        });
+    </script>
+</body>
+</html>

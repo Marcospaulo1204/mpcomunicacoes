@@ -1,1 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP Comunicação - Plataforma de Acessibilidade em Libras</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
 
+        body {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #1565c0;
+        }
+
+        header {
+            background: #1565c0;
+            color: white;
+            padding: 36px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(21, 101, 192, 0.3);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 1.05rem;
+            opacity: 0.92;
+        }
+
+        .container {
+            flex: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            width: 100%;
+        }
+
+        .menu-title {
+            text-align: center;
+            margin-bottom: 35px;
+            font-size: 1.45rem;
+            color: #0d47a1;
+            font-weight: 600;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+        }
+
+        a.btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            background: white;
+            border: 2px solid #90caf9;
+            border-radius: 16px;
+            padding: 32px 22px;
+            text-decoration: none;
+            color: #0d47a1;
+            font-size: 1.08rem;
+            font-weight: 600;
+            box-shadow: 0 6px 15px rgba(21, 101, 192, 0.12);
+            transition: all 0.25s ease;
+            min-height: 150px;
+            text-align: center;
+        }
+
+        a.btn:hover {
+            background: #1565c0;
+            color: white;
+            border-color: #1565c0;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(21, 101, 192, 0.28);
+        }
+
+        a.btn .icon {
+            font-size: 2.4rem;
+        }
+
+        footer {
+            background: #0d47a1;
+            color: white;
+            text-align: center;
+            padding: 18px;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.7rem;
+            }
+            a.btn {
+                min-height: 130px;
+                padding: 24px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MP Comunicação</h1>
+        <p>Plataforma Nacional de Acessibilidade em Libras</p>
+    </header>
+
+    <div class="container">
+        <h2 class="menu-title">Painel de Cadastros</h2>
+
+        <div class="grid">
+            <a href="Cadastro de Usuários" class="btn">
+                <span class="icon">👤</span>
+                Cadastro de Usuários
+            </a>
+
+            <a href="Cadastro de Intérpretes" class="btn">
+                <span class="icon">🤟</span>
+                Cadastro de Intérpretes
+            </a>
+
+            <a href="Cadastro de Especialidades" class="btn">
+                <span class="icon">📋</span>
+                Cadastro de Especialidades
+            </a>
+
+            <a href="Relação Intérpretes x Especialidades" class="btn">
+                <span class="icon">🔗</span>
+                Relação Intérpretes x Especialidades
+            </a>
+
+            <a href="Horários de Disponibilidade" class="btn">
+                <span class="icon">🗓️</span>
+                Horários de Disponibilidade
+            </a>
+
+            <a href="Cadastro de Agendamentos" class="btn">
+                <span class="icon">📅</span>
+                Agendamentos
+            </a>
+
+            <a href="Cadastro de Pagamentos" class="btn">
+                <span class="icon">💳</span>
+                Pagamentos
+            </a>
+
+            <a href="Cadastro de Avaliações" class="btn">
+                <span class="icon">⭐</span>
+                Avaliações
+            </a>
+
+            <a href="Cadastro de Cancelamentos" class="btn">
+                <span class="icon">❌</span>
+                Cancelamentos
+            </a>
+
+            <a href="Cadastro de Notificações" class="btn">
+                <span class="icon">🔔</span>
+                Notificações
+            </a>
+
+            <a href="Histórico de Status dos Agendamentos" class="btn">
+                <span class="icon">📜</span>
+                Histórico de Status
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        MP Comunicação © 2026 — Projeto Integrador - Desenvolvimento de Sistemas
+    </footer>
+</body>
+</html>
